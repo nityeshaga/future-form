@@ -27,7 +27,7 @@ export const createQuestionSchema = z.object({
   title: z.string().max(1024).optional(),
   description: z.string().max(2048).optional().nullable(),
   required: z.boolean().optional(),
-  properties: z.record(z.unknown()).optional(),
+  properties: z.record(z.string(), z.any()).optional(),
   order: z.number().int().min(0).optional(),
 });
 
