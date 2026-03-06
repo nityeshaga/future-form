@@ -47,9 +47,8 @@ export function FormBuilder({ initialForm }: FormBuilderProps) {
   const [isMounted, setIsMounted] = useState(false);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration guard
+  useEffect(() => { setIsMounted(true); }, []);
 
   const selectedQuestion = questions.find((q) => q.id === selectedQuestionId) || null;
 

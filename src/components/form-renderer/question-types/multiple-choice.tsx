@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import type { MultipleChoiceProperties } from "@/types/form";
 
 interface MultipleChoiceProps {
@@ -24,7 +24,7 @@ export function MultipleChoice({
   onSubmit,
   questionNumber,
 }: MultipleChoiceProps) {
-  const choices = properties.choices || [];
+  const choices = useMemo(() => properties.choices || [], [properties.choices]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
