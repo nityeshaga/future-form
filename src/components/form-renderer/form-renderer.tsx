@@ -33,7 +33,7 @@ export function FormRenderer({ form }: FormRendererProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const answersRef = useRef(answers);
-  answersRef.current = answers;
+  useEffect(() => { answersRef.current = answers; }, [answers]);
 
   const questions = form.questions;
   const currentQuestion = questions[currentIndex];

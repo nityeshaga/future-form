@@ -21,17 +21,16 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    async function fetchForms() {
+      const res = await fetch("/api/forms");
+      if (res.ok) {
+        const data = await res.json();
+        setForms(data.forms);
+      }
+      setIsLoading(false);
+    }
     fetchForms();
   }, []);
-
-  async function fetchForms() {
-    const res = await fetch("/api/forms");
-    if (res.ok) {
-      const data = await res.json();
-      setForms(data.forms);
-    }
-    setIsLoading(false);
-  }
 
   async function handleCreateForm() {
     const res = await fetch("/api/forms", { method: "POST" });
